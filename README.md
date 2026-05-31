@@ -38,7 +38,7 @@ This project demonstrates fundamental programming concepts including variables, 
 2. Download all project files.
 3. Place `worm_game_final.py` and `worm_bg.png` in the same folder.
 4. Run the script using any Python IDE or command prompt:
-   ```bash
+   ```
    python worm_game_final.py
 
 # GAME RULES & CONTROLS
@@ -56,12 +56,12 @@ Colliding with the boundary/wall
 Colliding with your own body
 
 # 👨‍💻 GROUP MEMBERS / DEVELOPERS
-1.JOHN KEVIN D. ADONIS
-2.Alfred banda
-3.Charles E. Almario 
-4.Ely Jay  G. Almazan 
-5.Jun staywart Conde 
-6.John roi ken German
-7.Cianrei Bares
+- [JOHN KEVIN D. ADONIS]()
+- [Alfred banda]()
+- [Charles E. Almario](https://github.com/jupiter4546/IT1C_Portfolio_Almario)
+- [Ely Jay  G. Almazan]() 
+- [Jun staywart Conde]()
+- [John roi ken German]()
+- [Cianrei Bares]()
 
 **Section:** IT1C | 
