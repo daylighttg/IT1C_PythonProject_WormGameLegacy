@@ -1,0 +1,212 @@
+// PROJECT: CLASSIC WORM GAME
+// PSEUDOCODE
+
+START
+
+// --------------------------
+// INITIALIZATION
+// --------------------------
+IMPORT required modules: turtle, time, random, winsound
+
+// Set Global Variables
+SET delay = 0.1
+SET score = 0
+SET high_score = 0
+SET game_running = TRUE
+SET game_state = "play"
+
+// --------------------------
+// SET UP GAME WINDOW
+// --------------------------
+CREATE game screen
+SET window title to "Classic Worm - Python Style"
+SET window size to 600 x 600 pixels
+
+TRY to set background image as "worm_bg.png"
+IF image file is missing or not found:
+    SET background color to "lightgreen"
+    DISPLAY message: "GAME IS NOW RUNNING"
+
+DEFINE function close_game():
+    SET game_running = FALSE
+    CLOSE the game window
+
+// --------------------------
+// CREATE GAME OBJECTS
+// --------------------------
+
+// 1. Create Worm Head
+CREATE object: snake_head
+SET shape = "circle"
+SET color = "darkgreen"
+SET size = 1.3 x 1.3
+PEN UP (do not draw line when moving)
+MOVE snake_head to position (0, 0)
+SET initial direction = "stop"
+
+CREATE empty list: snake_body  // This will store body segments
+
+// 2. Create Food Object
+CREATE object: food
+SET shape = "circle"
+SET color = "red"
+SET size = 1.0 x 1.0
+PEN UP
+MOVE food to position (0, 100)
+
+// 3. Create Score Display
+CREATE object: pen_score  // For showing points
+CREATE object: pen_message // For showing game messages
+
+// --------------------------
+// DEFINE MOVEMENT FUNCTIONS
+// --------------------------
+
+FUNCTION go_up():
+    IF current direction is NOT "down" AND game_state is "play":
+        SET direction = "up"
+
+FUNCTION go_down():
+    IF current direction is NOT "up" AND game_state is "play":
+        SET direction = "down"
+
+FUNCTION go_left():
+    IF current direction is NOT "right" AND game_state is "play":
+        SET direction = "left"
+
+FUNCTION go_right():
+    IF current direction is NOT "left" AND game_state is "play":
+        SET direction = "right"
+
+// --------------------------
+// DEFINE GAME CONTROLS
+// --------------------------
+
+FUNCTION try_again():
+    IF game_state is "game_over":
+        CLEAR all messages from screen
+        MOVE snake_head back to center (0, 0)
+        RESET direction to "stop"
+        
+        // Remove all body segments
+        FOR EACH segment in snake_body:
+            MOVE segment far away (1000, 1000)
+        EMPTY the snake_body list
+        
+        // Reset game stats
+        SET score = 0
+        SET delay = 0.1
+        UPDATE score display
+        SET game_state = "play"
+
+FUNCTION exit_game():
+    CLEAR screen messages
+    MOVE pen to center
+    WRITE message: "THANK YOU FOR PLAYING!!"
+    WAIT for 2 seconds
+    SET game_running = FALSE
+    CLOSE window
+
+// --------------------------
+// MAIN MOVEMENT LOGIC
+// --------------------------
+
+FUNCTION move():
+    IF game_running is FALSE OR game_state is NOT "play":
+        EXIT function
+
+    // Move body segments: Each segment follows the one in front of it
+    FOR index FROM last segment TO second segment:
+        GET position of the segment in front
+        MOVE current segment to that position
+
+    // Move first body segment to head position
+    IF there are body segments:
+        MOVE first segment to position of snake_head
+
+    // Move the Head based on direction
+    IF direction = "up":
+        MOVE snake_head UP by 20 units
+    ELSE IF direction = "down":
+        MOVE snake_head DOWN by 20 units
+    ELSE IF direction = "left":
+        MOVE snake_head LEFT by 20 units
+    ELSE IF direction = "right":
+        MOVE snake_head RIGHT by 20 units
+
+// --------------------------
+// KEYBOARD INPUT SETUP
+// --------------------------
+LISTEN for key presses:
+    ON KEY PRESS 'W' or 'Up Arrow' → CALL go_up()
+    ON KEY PRESS 'S' or 'Down Arrow' → CALL go_down()
+    ON KEY PRESS 'A' or 'Left Arrow' → CALL go_left()
+    ON KEY PRESS 'D' or 'Right Arrow' → CALL go_right()
+    ON KEY PRESS 'R' → CALL try_again()
+    ON KEY PRESS 'E' → CALL exit_game()
+
+// --------------------------
+// MAIN GAME LOOP
+// --------------------------
+
+WRITE initial score: "Score: 0 | Highest: 0"
+
+WHILE game_running is TRUE:
+    UPDATE screen display
+
+    // --------------------------
+    // CHECK COLLISION WITH WALL
+    // --------------------------
+    IF game_state = "play" AND head position is beyond boundary (x > 290 OR x < -290 OR y > 290 OR y < -290):
+        PLAY sound: Beep(250, 300)
+        SET game_state = "game_over"
+        DISPLAY "GAME OVER GG!!"
+        DISPLAY instruction: "Click [ R ] TRY AGAIN"
+        DISPLAY instruction: "Click [ E ] EXIT"
+
+    // --------------------------
+    // CHECK FOOD CONSUMPTION
+    // --------------------------
+    IF game_state = "play" AND distance between snake_head and food < 20:
+        PLAY sound: Beep(700, 120)
+        
+        // Spawn food at random location
+        SET new_x = random number between -290 and 290
+        SET new_y = random number between -290 and 290
+        MOVE food to (new_x, new_y)
+
+        // Add new body segment
+        CREATE new segment object
+        SET color = "limegreen"
+        ADD new segment to snake_body list
+
+        // Increase difficulty and score
+        SET delay = delay - 0.001  // Makes game faster
+        SET score = score + 10
+        
+        // Update High Score
+        IF score > high_score:
+            SET high_score = score
+
+        // Refresh Scoreboard
+        CLEAR score display
+        WRITE new score and high_score
+
+    // --------------------------
+    // CHECK COLLISION WITH SELF
+    // --------------------------
+    FOR EACH segment in snake_body:
+        IF game_state = "play" AND distance between snake_head and segment < 20:
+            PLAY sound: Beep(200, 400)
+            SET game_state = "game_over"
+            DISPLAY "GAME OVER GG!!" in RED color
+            DISPLAY instruction: "Click [ R ] TRY AGAIN"
+            DISPLAY instruction: "Click [ E ] EXIT"
+
+    // Execute movement and control speed
+    CALL move()
+    PAUSE for 'delay' seconds
+
+END WHILE
+
+END
