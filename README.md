@@ -18,6 +18,7 @@ This project demonstrates fundamental programming concepts including variables, 
 
 ---
 
+
 ## 🎮 GAME FEATURES
 ✅ **Classic Gameplay** – Authentic movement and mechanics
 ✅ **Dual Controls** – Play using `W A S D` keys or `Arrow Keys`
@@ -59,9 +60,9 @@ Colliding with your own body
 # 👨‍💻 GROUP MEMBERS / DEVELOPERS
 1.JOHN KEVIN D. ADONIS
 2.Alfred banda
-3.Charles Almario
+3.Charles Almario 
 4.Ely Jay  G. Almazan 
-5.Jun staywart Conde
+5.Jun staywart Conde 
 6.John roi ken German
 7.Cianrei Bares
 
