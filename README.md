@@ -7,7 +7,7 @@ This project is a digital recreation of the classic **"Worm" or "Snake Game"**, 
 
 This project demonstrates fundamental programming concepts including variables, loops, conditional statements, functions, and data structures using built-in Python modules.
 
----
+
 
 ## 🛠️ TECHNOLOGIES & LIBRARIES USED
 - **Python 3.x** - Core programming language
