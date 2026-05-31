@@ -29,7 +29,7 @@ This project demonstrates fundamental programming concepts including variables, 
 ✅ **Restart & Exit Option** – Press `[R]` to play again, `[E]` to exit
 ✅ **Background Support** – Custom background image support (falls back to solid color if missing)
 
----
+
 
 ## 📂 PROJECT STRUCTURE
 
