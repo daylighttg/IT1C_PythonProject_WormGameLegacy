@@ -55,8 +55,6 @@ Game Over Conditions:
 Colliding with the boundary/wall
 Colliding with your own body
 
-
-
 # 👨‍💻 GROUP MEMBERS / DEVELOPERS
 1.JOHN KEVIN D. ADONIS
 2.Alfred banda
@@ -65,7 +63,5 @@ Colliding with your own body
 5.Jun staywart Conde 
 6.John roi ken German
 7.Cianrei Bares
-
-////
 
 **Section:** IT1C | 
