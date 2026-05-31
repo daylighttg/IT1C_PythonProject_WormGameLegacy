@@ -62,7 +62,7 @@ Colliding with your own body
 3.Charles Almario
 4.Ely Jay Almazan
 5.Jun staywart Conde
-6.John Roi ken German
+6.John roi ken German
 7.Cianrei Bares
 
 **Section:** IT1C | 
